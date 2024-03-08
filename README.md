@@ -113,19 +113,6 @@ load(io.popen('starship init cmd'):read("*a"))()
 </details>
 
 <details>
-<summary>Elvish</summary>
-
-Add the following to the end of `~/.elvish/rc.elv`:
-
-```sh
-eval (starship init elvish)
-```
-
-Note: Only Elvish v0.18+ is supported
-
-</details>
-
-<details>
 <summary>Fish</summary>
 
 Add the following to the end of `~/.config/fish/config.fish`:
@@ -137,65 +124,12 @@ starship init fish | source
 </details>
 
 <details>
-<summary>Ion</summary>
-
-Add the following to the end of `~/.config/ion/initrc`:
-
-```sh
-eval $(starship init ion)
-```
-
-</details>
-
-<details>
-<summary>Nushell</summary>
-
-Add the following to the end of your Nushell env file (find it by running `$nu.env-path` in Nushell):
-
-```sh
-mkdir ~/.cache/starship
-starship init nu | save -f ~/.cache/starship/init.nu
-```
-
-And add the following to the end of your Nushell configuration (find it by running `$nu.config-path`):
-
-```sh
-use ~/.cache/starship/init.nu
-```
-
-Note: Only Nushell v0.78+ is supported
-
-</details>
-
-<details>
 <summary>PowerShell</summary>
 
 Add the following to the end of your PowerShell configuration (find it by running `$PROFILE`):
 
 ```powershell
 Invoke-Expression (&starship init powershell)
-```
-
-</details>
-
-<details>
-<summary>Tcsh</summary>
-
-Add the following to the end of `~/.tcshrc`:
-
-```sh
-eval `starship init tcsh`
-```
-
-</details>
-
-<details>
-<summary>Xonsh</summary>
-
-Add the following to the end of `~/.xonshrc`:
-
-```python
-execx($(starship init xonsh))
 ```
 
 </details>
