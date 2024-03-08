@@ -1,5 +1,5 @@
 # Setup Fish Terminal
-## 1: Install fish:
+## 1: Install [fish](https://github.com/fish-shell/fish-shell):
 """ Bash
 sudo apt update 
 sudo apt upgrade
