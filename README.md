@@ -84,6 +84,7 @@ Install Starship using any of the following package managers:
 | [winget]        | `winget install --id Starship.Starship` |
 
 </details>
+
 ### Setup for your shell:
 Set up your shell to use Starship
 
