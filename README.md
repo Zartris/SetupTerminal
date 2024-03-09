@@ -153,10 +153,11 @@ mkdir -p ~/.config && touch ~/.config/starship.toml
 ```
 <details>
   <summery>File content</summery>
+  
   ```toml
   add_newline = true
   # format = """$os$username$hostname$kubernetes$directory$git_branch$git_status"""
-  
+
   # ---
   
   [os]
@@ -217,5 +218,5 @@ mkdir -p ~/.config && touch ~/.config/starship.toml
   staged = '[++\($count\)](green)'
   renamed = '襁 '
   deleted = ' '
-  ```
+```
 </details>
