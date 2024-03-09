@@ -145,3 +145,77 @@ eval "$(starship init zsh)"
 ```
 
 </details>
+
+### Configurate styling:
+To get started configuring starship, create the following file: `~/.config/starship.toml`.
+```sh 
+mkdir -p ~/.config && touch ~/.config/starship.toml
+```
+<details>
+  <summery>File content</summery>
+  ```toml
+  add_newline = true
+  # format = """$os$username$hostname$kubernetes$directory$git_branch$git_status"""
+  
+  # ---
+  
+  [os]
+  format = '[$symbol](bold white) '   
+  disabled = false
+  
+  [os.symbols]
+  Windows = ''
+  Arch = '󰣇'
+  Ubuntu = ''
+  Macos = '󰀵'
+  
+  # ---
+  
+  # Shows the username
+  [username]
+  style_user = 'white bold'
+  style_root = 'black bold'
+  format = '[$user]($style) '
+  disabled = false
+  show_always = true
+  
+  # Shows the hostname
+  [hostname]
+  ssh_only = true
+  format = 'on [$hostname](bold yellow) '
+  disabled = false
+  
+  # Shows current directory
+  [directory]
+  truncation_length = 1
+  truncation_symbol = '…/'
+  home_symbol = '󰋜 ~'
+  read_only_style = '197'
+  read_only = '  '
+  format = 'at [$path]($style)[$read_only]($read_only_style) '
+  
+  # Shows current git branch
+  [git_branch]
+  symbol = ' '
+  format = 'via [$symbol$branch]($style)'
+  # truncation_length = 4
+  truncation_symbol = '…/'
+  style = 'bold green'
+  
+  # Shows current git status
+  [git_status]
+  format = '[$all_status$ahead_behind]($style) '
+  style = 'bold green'
+  conflicted = '🏳'
+  up_to_date = ''
+  untracked = ' '
+  ahead = '⇡${count}'
+  diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+  behind = '⇣${count}'
+  stashed = ' '
+  modified = ' '
+  staged = '[++\($count\)](green)'
+  renamed = '襁 '
+  deleted = ' '
+  ```
+</details>
