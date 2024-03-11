@@ -220,3 +220,7 @@ mkdir -p ~/.config && touch ~/.config/starship.toml
   deleted = ' '
 ```
 </details>
+
+## 5. Install nerdfont
+Go to [nerdfont](https://www.nerdfonts.com/font-downloads) and pick any good fonts you like.
+My favorite is jetbrains mono.
