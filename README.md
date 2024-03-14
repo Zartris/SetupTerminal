@@ -1,6 +1,7 @@
 # Setup Fish Terminal
 ## 1: Install [fish](https://github.com/fish-shell/fish-shell):
 ``` Bash
+sudo apt-add-repository ppa:fish-shell/release-3
 sudo apt update 
 sudo apt upgrade
 sudo apt install fish
@@ -17,8 +18,10 @@ I am using it to install [ros2.fish](https://github.com/kpbaks/ros2.fish) which 
 
 ``` Bash
 curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+# ros2 autocomplete
 fisher install kpbaks/ros2.fish
-
+# if above is installed I would recommend fzf aswell
+sudo apt install fzf
 ```
 
 
