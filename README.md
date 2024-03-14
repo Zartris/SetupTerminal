@@ -11,6 +11,17 @@ curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install 
 ```
 omf is used to install fish plugins with the command omf install [package].
 
+## 2.1: Install [fisher](https://github.com/jorgebucaran/fisher)
+Same thing as omf, but different plugins can be available.
+I am using it to install [ros2.fish](https://github.com/kpbaks/ros2.fish) which auto completes all ros2 commands.
+
+``` Bash
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+fisher install kpbaks/ros2.fish
+
+```
+
+
 ## 3: Install [bass](https://github.com/edc/bass?tab=readme-ov-file)
 ``` Bash
 omf install bass
