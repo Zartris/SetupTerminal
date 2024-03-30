@@ -6,6 +6,12 @@ sudo apt update
 sudo apt upgrade
 sudo apt install fish
 ```
+Then to set it as default shell:
+``` Bash
+chsh -s $(which fish)
+```
+Logout after and when you login again it is the default.
+
 ## 2: Install [oh my fish](https://github.com/oh-my-fish/oh-my-fish) (omf)
 ``` Bash
 curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
