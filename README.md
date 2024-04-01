@@ -1,4 +1,8 @@
 # Setup Fish Terminal
+
+## Overview
+I have tried to compile most of this into an install script, but I have also written out how to install everything from scratch.
+
 ## 1: Install [fish](https://github.com/fish-shell/fish-shell):
 ``` Bash
 sudo apt-add-repository ppa:fish-shell/release-3
