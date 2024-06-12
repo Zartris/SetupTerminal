@@ -248,3 +248,10 @@ mkdir -p ~/.config && touch ~/.config/starship.toml
 ## 5. Install nerdfont
 Go to [nerdfont](https://www.nerdfonts.com/font-downloads) and pick any good fonts you like.
 My favorite is jetbrains mono.
+``` sh
+cd <your_font_zips>
+# next command extracts all TTF and OTF files into your `.fonts` folder.
+unzip "*.zip" "*.ttf" "*.otf" -d ${HOME}/.fonts
+# next command rebuilds font cache
+sudo fc-cache -f -v
+```
