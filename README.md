@@ -40,6 +40,15 @@ fisher install kpbaks/ros2.fish
 
 # if above is installed I would recommend fzf aswell
 sudo apt install fzf
+
+# fzf key bindings for fish (ctrl+r history, ctrl+alt+f dir, ctrl+alt+l git log, ctrl+alt+s git status)
+fisher install PatrickF1/fzf.fish
+
+# desktop notification when a long-running command finishes
+fisher install franciscolourenco/done
+
+# auto-close quotes/brackets as you type
+fisher install jorgebucaran/autopair.fish
 ```
 
 
@@ -275,4 +284,91 @@ rm JetBrainsMono.zip
 
 # 6. Rebuild the font cache to register the new fonts
 fc-cache -f -v
+```
+
+## 6. Install [nvm](https://github.com/nvm-sh/nvm) and wire it into fish (via bass)
+`nvm.sh` is a bash script, so fish can't `source` it directly — `bass` (step 3) bridges that.
+
+Install nvm the normal way (this also adds sourcing to `~/.bashrc`, which fish ignores):
+``` sh
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+nvm install --lts
+```
+
+**On WSL specifically**: if you skip the step below, `node`/`npm` in fish will silently resolve to the *Windows* install (`/mnt/c/Program Files/nodejs/...`) instead of the Linux one, because WSL appends the Windows `PATH` and fish never sources `.bashrc` to get the Linux nvm path in first. Add this to `~/.config/fish/config.fish`:
+```fish
+function nvm
+    bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv
+end
+nvm use default >/dev/null
+```
+
+If anything outside your shell needs `node`/`npm` (editor extensions, non-interactive tool hooks that run via `/bin/sh` and don't source any shell rc file), symlink the binaries into `~/.local/bin` too, since that's on `PATH` everywhere:
+```sh
+ln -sf ~/.nvm/versions/node/<version>/bin/node ~/.local/bin/node
+ln -sf ~/.nvm/versions/node/<version>/bin/npm ~/.local/bin/npm
+ln -sf ~/.nvm/versions/node/<version>/bin/npx ~/.local/bin/npx
+```
+Re-run this whenever you change your nvm default version.
+
+## 7. Install QoL CLI tools: [zoxide](https://github.com/ajeetdsouza/zoxide), [eza](https://github.com/eza-community/eza), [bat](https://github.com/sharkdp/bat), [fd](https://github.com/sharkdp/fd), [git-delta](https://github.com/dandavison/delta)
+``` sh
+sudo apt install zoxide eza bat fd-find git-delta
+```
+On Debian/Ubuntu, `bat` and `fd` install as `batcat`/`fdfind` (name clashes with other packages), so alias them back.
+
+Add to `~/.config/fish/config.fish`:
+```fish
+# zoxide: smarter cd (z <dir>)
+if command -q zoxide
+    zoxide init fish | source
+end
+
+# bat/fd: Debian/Ubuntu ship these under batcat/fdfind
+if command -q batcat; and not command -q bat
+    alias bat batcat
+end
+if command -q fdfind; and not command -q fd
+    alias fd fdfind
+end
+
+# eza: modern ls replacement, also feeds ll/la/autols.fish
+if command -q eza
+    alias ls 'eza'
+    alias ll 'eza -lh --group-directories-first'
+    alias la 'eza -a --group-directories-first'
+end
+```
+
+### git-delta
+Add to `~/.gitconfig` to use `delta` as the diff/pager:
+```ini
+[core]
+	pager = delta
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true
+	light = false
+	side-by-side = false
+	line-numbers = true
+
+[merge]
+	conflictstyle = zdiff3
+```
+
+## 8. Startup keybinding reminder (optional)
+`fish_greeting` runs once per new shell — useful for a one-line cheat sheet of the bindings above that are easy to forget (fzf, zoxide). Skip anything that "just works" (e.g. autopair, done) since there's nothing to actively remember.
+
+Create `~/.config/fish/functions/fish_greeting.fish`:
+```fish
+function fish_greeting
+    set_color brblue
+    echo "  fzf   ctrl+r history · ctrl+alt+f dir · ctrl+alt+l git log · ctrl+alt+s git status"
+    echo "  z <dir>   jump to frecent dir (zoxide)"
+    echo "  ll / la   eza listing · bat/fd = batcat/fdfind"
+    set_color normal
+end
 ```
