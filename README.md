@@ -369,6 +369,9 @@ function fish_greeting
     echo "  fzf   ctrl+r history · ctrl+alt+f dir · ctrl+alt+l git log · ctrl+alt+s git status"
     echo "  z <dir>   jump to frecent dir (zoxide)"
     echo "  ll / la   eza listing · bat/fd = batcat/fdfind"
+    echo "  git   gs status · ga/gaa add · gcm commit · gsw/gswc switch · gp push/pull · gf fetch"
+    echo "  git   gd diff · gl log · gb branch · gst/gstp stash push/pop · gbo branch overview"
     set_color normal
 end
 ```
+The [git.fish](https://github.com/kpbaks/git.fish) plugin (installed in step 2.1) ships ~115 abbreviations — `abbr --show` lists them all. The lines above are just the everyday subset worth memorizing first; the rest expand as you type them so they're discoverable without memorizing.
