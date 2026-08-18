@@ -257,9 +257,22 @@ mkdir -p ~/.config && touch ~/.config/starship.toml
 Go to [nerdfont](https://www.nerdfonts.com/font-downloads) and pick any good fonts you like.
 My favorite is jetbrains mono.
 ``` sh
-cd <your_font_zips>
-# next command extracts all TTF and OTF files into your `.fonts` folder.
-unzip "*.zip" "*.ttf" "*.otf" -d ${HOME}/.fonts
-# next command rebuilds font cache
-sudo fc-cache -f -v
+# Fish script, move $ outside to make it bash
+# 1. Create your local font directory if it doesn't exist
+mkdir -p {$HOME}/.fonts
+
+# 2. Navigate to your font directory
+cd {$HOME}/.fonts
+
+# 3. Download the JetBrainsMono Nerd Font zip file
+curl -OL https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.0/JetBrainsMono.zip
+
+# 4. Extract only the TTF and OTF files directly into this folder
+unzip "JetBrainsMono.zip" "*.ttf" "*.otf" -d {$HOME}/.fonts
+
+# 5. Clean up the downloaded zip file
+rm JetBrainsMono.zip
+
+# 6. Rebuild the font cache to register the new fonts
+fc-cache -f -v
 ```
